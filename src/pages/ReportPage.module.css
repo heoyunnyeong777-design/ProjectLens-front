@@ -1,0 +1,112 @@
+/* ── 기본 ── */
+.page { min-height: 100vh; background: #0d1117; color: #e6edf3; display: flex; flex-direction: column; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+.loadingPage { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #0d1117; color: #8b949e; gap: 16px; }
+.loadingSpinner { width: 32px; height: 32px; border: 3px solid #21262d; border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── 상단 네비 ── */
+.topNav {
+  display: flex; align-items: center; gap: 32px;
+  padding: 0 24px; height: 57px;
+  border-bottom: 1px solid #21262d;
+  position: sticky; top: 0; background: #0d1117; z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 15px; cursor: pointer; color: #e6edf3; text-decoration: none; }
+.logoIcon { width: 28px; height: 28px; background: linear-gradient(135deg, #3b82f6, #6366f1); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+.topLinks { display: flex; gap: 24px; font-size: 14px; color: #8b949e; }
+.topLinks span { cursor: pointer; transition: color 0.15s; } .topLinks span:hover { color: #e6edf3; }
+.topRight { margin-left: auto; }
+.searchWrap { position: relative; display: flex; align-items: center; }
+.searchIcon { position: absolute; left: 10px; pointer-events: none; }
+.search { background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 6px 12px 6px 30px; color: #8b949e; font-size: 13px; width: 220px; outline: none; transition: border-color 0.15s; }
+.search:focus { border-color: #3b82f6; color: #e6edf3; }
+
+/* ── 3단 레이아웃 ── */
+.layout { display: flex; flex: 1; }
+
+/* ── 왼쪽 사이드바 ── */
+.sidebar {
+  width: 230px; min-width: 230px;
+  border-right: 1px solid #21262d;
+  padding: 28px 0 24px; display: flex; flex-direction: column; gap: 28px;
+  position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto;
+}
+.sideSection { display: flex; flex-direction: column; gap: 1px; padding: 0 16px; }
+.sideTitle { font-size: 11px; font-weight: 600; color: #484f58; letter-spacing: 1.2px; padding: 0 6px; margin-bottom: 8px; }
+.sideItem {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 6px; border-radius: 6px;
+  font-size: 13.5px; color: #8b949e;
+  cursor: pointer; transition: all 0.15s;
+}
+.sideItem:hover { background: #161b22; color: #c9d1d9; }
+.sideActive { color: #58a6ff !important; background: #1f6feb18 !important; font-weight: 500; }
+.sideDot { width: 6px; height: 6px; border-radius: 50%; background: #30363d; flex-shrink: 0; margin-left: 4px; }
+
+.projectCard { margin: auto 16px 0; padding: 14px; background: #161b22; border-radius: 8px; border: 1px solid #21262d; }
+.projectCardLabel { font-size: 11px; color: #484f58; margin-bottom: 6px; letter-spacing: 0.5px; }
+.projectCardName { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #c9d1d9; word-break: break-all; }
+.projectDot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; box-shadow: 0 0 6px #22c55e80; }
+
+/* ── 메인 ── */
+.main { flex: 1; padding: 36px 48px; overflow-y: auto; min-width: 0; }
+
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #484f58; margin-bottom: 32px; }
+.breadLink { cursor: pointer; transition: color 0.15s; } .breadLink:hover { color: #58a6ff; }
+.breadSep { color: #30363d; }
+.breadCurrent { color: #8b949e; }
+
+/* ── 페이지 헤더 ── */
+.pageHeader { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #21262d; }
+.pageTitle { font-size: 32px; font-weight: 800; color: #e6edf3; margin: 0 0 10px; letter-spacing: -0.5px; }
+.pageDesc { font-size: 15px; color: #8b949e; margin: 0 0 18px; line-height: 1.6; }
+.metaRow { display: flex; gap: 10px; flex-wrap: wrap; }
+.metaBadge { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #8b949e; padding: 4px 12px; background: #161b22; border: 1px solid #30363d; border-radius: 20px; }
+.metaDot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 5px #22c55e60; }
+
+/* ── 분석 카드 ── */
+.card {
+  border-radius: 10px; border: 1px solid #21262d;
+  margin-bottom: 24px; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: #30363d; }
+.card_blue  { border-top: 3px solid #3b82f6; }
+.card_purple { border-top: 3px solid #8b5cf6; }
+.card_orange { border-top: 3px solid #f59e0b; }
+
+.cardHeader { display: flex; align-items: center; gap: 10px; padding: 18px 22px 14px; background: #161b22; }
+.cardEmoji { font-size: 20px; line-height: 1; }
+.cardTitle { font-size: 17px; font-weight: 700; color: #e6edf3; margin: 0; }
+.cardDivider { height: 1px; background: #21262d; }
+.cardBody { padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; }
+.cardPara { font-size: 14.5px; color: #8b949e; line-height: 1.8; margin: 0; padding-left: 12px; border-left: 2px solid #21262d; }
+
+/* ── Full Report ── */
+.reportBox { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 32px; }
+.reportH2 { font-size: 20px; font-weight: 700; color: #e6edf3; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #21262d; }
+.reportH3 { font-size: 16px; font-weight: 600; color: #c9d1d9; margin: 20px 0 8px; }
+.reportP  { font-size: 14.5px; color: #8b949e; line-height: 1.8; margin: 0; }
+.reportBlank { height: 8px; }
+
+/* ── 오른쪽 목차 ── */
+.toc { width: 180px; min-width: 180px; padding: 36px 20px; position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+.tocTitle { font-size: 11px; font-weight: 600; color: #484f58; letter-spacing: 1.2px; margin-bottom: 14px; }
+.tocItem { font-size: 13px; color: #484f58; padding: 5px 0; cursor: pointer; border-left: 2px solid transparent; padding-left: 10px; transition: all 0.15s; }
+.tocItem:hover { color: #58a6ff; border-left-color: #58a6ff; }
+
+.empty { color: #484f58; font-size: 15px; padding: 60px 0; text-align: center; }
+
+/* ── 채팅 플로팅 버튼 ── */
+.chatBtn {
+  position: fixed; bottom: 28px; right: 28px;
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white; border: none; border-radius: 28px;
+  padding: 13px 22px; font-size: 14px; font-weight: 600;
+  cursor: pointer; box-shadow: 0 4px 24px #3b82f650;
+  transition: all 0.2s; z-index: 200;
+}
+.chatBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px #3b82f670; }
