@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import api from '../api/client'
 import styles from './AnalyzingPage.module.css'
 
-const STEPS = ['\uC800\uC7A5\uC18C \uC218\uC9D1 \uC911', '\uCF54\uB4DC \uCCAD\uD0B9 \uC911', '\uC784\uBCA0\uB529 \uC0DD\uC131 \uC911', 'DB \uC800\uC7A5 \uC911', '\uBCF4\uACE0\uC11C \uC0DD\uC131 \uC911']
+const STEPS = ['저장소 수집 중', '코드 청킹 중', '임베딩 생성 중', 'DB 저장 중', '보고서 생성 중']
 const STATUS_TO_STEP = { COLLECTING: 0, CHUNKING: 1, EMBEDDING: 2, SAVING: 3, EMBEDDED: 4, ANALYZING: 4 }
 const STATUS_MIN_PROGRESS = { PENDING: 5, COLLECTING: 15, CHUNKING: 45, EMBEDDING: 55, SAVING: 92, EMBEDDED: 100 }
 
@@ -12,7 +12,7 @@ export default function AnalyzingPage() {
   const navigate = useNavigate()
   const [progress, setProgress] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
-  const [currentFile, setCurrentFile] = useState('\uBD84\uC11D \uC900\uBE44 \uC911...')
+  const [currentFile, setCurrentFile] = useState('분석 준비 중...')
   const [fileCount, setFileCount] = useState(0)
   const [done, setDone] = useState(false)
 
@@ -54,7 +54,7 @@ export default function AnalyzingPage() {
         clearInterval(pollRef.current)
         targetRef.current = 100
         setCurrentStep(4)
-        setCurrentFile('\uBD84\uC11D \uBCF4\uACE0\uC11C \uC0DD\uC131 \uC911...')
+        setCurrentFile('분석 보고서 생성 중...')
         const waitAnalysis = setInterval(async () => {
           try {
             const r = await api.get(`/api/projects/${projectId}/analysis`)
@@ -67,7 +67,7 @@ export default function AnalyzingPage() {
               setTimeout(() => navigate(`/report/${projectId}`), 800)
             } else if (r.data.analysis_status === 'ERROR') {
               clearInterval(waitAnalysis)
-              alert('\uBD84\uC11D \uC911 \uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC5B4\uC694.')
+              alert('분석 중 오류가 발생했어요.')
               navigate('/')
             }
           } catch (e) { console.error(e) }
@@ -75,7 +75,7 @@ export default function AnalyzingPage() {
       } else if (status === 'ERROR') {
         clearInterval(pollRef.current)
         clearInterval(animRef.current)
-        alert('\uBD84\uC11D \uC911 \uC624\uB958\uAC00 \uBC1C\uC0DD\uD588\uC5B4\uC694. \uB2E4\uC2DC \uC2DC\uB3C4\uD574\uC8FC\uC138\uC694.')
+        alert('분석 중 오류가 발생했어요. 다시 시도해주세요.')
         navigate('/')
       }
     } catch (e) {
@@ -116,8 +116,8 @@ export default function AnalyzingPage() {
           </div>
         </div>
 
-        <h1 className={styles.title}>{done ? '\uBD84\uC11D \uC644\uB8CC!' : '\uBD84\uC11D \uC9C4\uD589 \uC911'}</h1>
-        <p className={styles.desc}>\uC7A0\uC2DC\uB9CC \uAE30\uB2E4\uB824 \uC8FC\uC138\uC694. \uCF54\uB4DC\uBCA0\uC774\uC2A4\uB97C \uBD84\uC11D\uD558\uACE0 \uC788\uC5B4\uC694.</p>
+        <h1 className={styles.title}>{done ? '분석 완료!' : '분석 진행 중'}</h1>
+        <p className={styles.desc}>잠시만 기다려 주세요. 코드베이스를 분석하고 있어요.</p>
 
         <div className={styles.steps}>
           {STEPS.map((step, i) => {
@@ -140,7 +140,7 @@ export default function AnalyzingPage() {
         <div className={styles.logBox}>
           <span className={styles.logDot} />
           <span className={styles.logText}>{currentFile}</span>
-          {fileCount > 0 && <span className={styles.logBadge}>\uCD1D {fileCount}\uAC1C</span>}
+          {fileCount > 0 && <span className={styles.logBadge}>총 {fileCount}개</span>}
         </div>
       </main>
     </div>

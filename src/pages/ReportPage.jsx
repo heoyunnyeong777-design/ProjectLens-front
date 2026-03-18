@@ -4,11 +4,11 @@ import api from '../api/client'
 import styles from './ReportPage.module.css'
 
 const MENU = [
-  { id: 'overview',     label: 'Overview',       icon: '🔍' },
-  { id: 'structure',    label: 'Architecture',   icon: '🏗️' },
-  { id: 'features',     label: 'Key Components', icon: '⚡' },
-  { id: 'improvements', label: 'Improvements',   icon: '🔧' },
-  { id: 'report',       label: 'Full Report',    icon: '📄' },
+  { id: 'overview',     label: 'Overview',       icon: 'ð' },
+  { id: 'structure',    label: 'Architecture',   icon: 'ðï¸' },
+  { id: 'features',     label: 'Key Components', icon: 'â¡' },
+  { id: 'improvements', label: 'Improvements',   icon: 'ð§' },
+  { id: 'report',       label: 'Full Report',    icon: 'ð' },
 ]
 
 export default function ReportPage() {
@@ -37,7 +37,7 @@ export default function ReportPage() {
   if (loading) return (
     <div className={styles.loadingPage}>
       <div className={styles.loadingSpinner} />
-      <p>불러오는 중...</p>
+      <p>ë¶ë¬ì¤ë ì¤...</p>
     </div>
   )
 
@@ -45,7 +45,7 @@ export default function ReportPage() {
 
   return (
     <div className={styles.page}>
-      {/* 상단 네비 */}
+      {/* ìë¨ ë¤ë¹ */}
       <nav className={styles.topNav}>
         <div className={styles.logo} onClick={() => navigate('/')}>
           <div className={styles.logoIcon}>
@@ -71,7 +71,7 @@ export default function ReportPage() {
       </nav>
 
       <div className={styles.layout}>
-        {/* 좌측 사이드바 */}
+        {/* ì¢ì¸¡ ì¬ì´ëë° */}
         <aside className={styles.sidebar}>
           <div className={styles.sideSection}>
             <div className={styles.sideTitle}>ANALYSIS RESULT</div>
@@ -101,12 +101,12 @@ export default function ReportPage() {
             <div className={styles.projectCardLabel}>Project</div>
             <div className={styles.projectCardName}>
               <span className={styles.projectDot} />
-              <span>{project?.name || '알 수 없음'}</span>
+              <span>{project?.name || 'ì ì ìì'}</span>
             </div>
           </div>
         </aside>
 
-        {/* 메인 */}
+        {/* ë©ì¸ */}
         <main className={styles.main}>
           <div className={styles.breadcrumb}>
             <span onClick={() => navigate('/')} className={styles.breadLink}>Home</span>
@@ -119,14 +119,14 @@ export default function ReportPage() {
           <Content active={active} project={project} analysis={analysis} />
         </main>
 
-        {/* 우측 목차 */}
+        {/* ì°ì¸¡ ëª©ì°¨ */}
         <aside className={styles.toc}>
           <div className={styles.tocTitle}>ON THIS PAGE</div>
           <TocItems active={active} />
         </aside>
       </div>
 
-      {/* 채팅 바로가기 버튼 */}
+      {/* ì±í ë°ë¡ê°ê¸° ë²í¼ */}
       <button className={styles.chatBtn} onClick={() => navigate(`/chat/${projectId}`)}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
@@ -138,7 +138,7 @@ export default function ReportPage() {
   )
 }
 
-/* 목차 컴포넌트 */
+/* ëª©ì°¨ ì»´í¬ëí¸ */
 function TocItems({ active }) {
   const map = {
     overview:     ['Overview', 'Architecture', 'Key Features', 'Improvements'],
@@ -152,14 +152,14 @@ function TocItems({ active }) {
   ))
 }
 
-/* 컨텐츠 렌더러 */
+/* ì»¨íì¸  ë ëë¬ */
 function Content({ active, project, analysis }) {
-  if (!analysis) return <div className={styles.empty}>분석 결과가 없어요.</div>
+  if (!analysis) return <div className={styles.empty}>ë¶ì ê²°ê³¼ê° ìì´ì.</div>
 
   if (active === 'overview') return <OverviewContent project={project} analysis={analysis} />
-  if (active === 'structure') return <SingleContent title="Architecture" emoji="🏗️" content={analysis.structure} />
-  if (active === 'features')  return <SingleContent title="Key Components" emoji="⚡" content={analysis.features} />
-  if (active === 'improvements') return <SingleContent title="Improvements" emoji="🔧" content={analysis.improvements} />
+  if (active === 'structure') return <SingleContent title="Architecture" emoji="ðï¸" content={analysis.structure} />
+  if (active === 'features')  return <SingleContent title="Key Components" emoji="â¡" content={analysis.features} />
+  if (active === 'improvements') return <SingleContent title="Improvements" emoji="ð§" content={analysis.improvements} />
   if (active === 'report')    return <ReportContent content={analysis.report} />
   return null
 }
@@ -170,33 +170,33 @@ function OverviewContent({ project, analysis }) {
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>System Analysis Overview</h1>
         <p className={styles.pageDesc}>
-          {project?.name} 프로젝트의 구조, 핵심 기능, 개선점을 담은 분석의 결과예요.
+          {project?.name} íë¡ì í¸ì êµ¬ì¡°, íµì¬ ê¸°ë¥, ê°ì ì ì ë´ì ë¶ìì ê²°ê³¼ìì.
         </p>
         <div className={styles.metaRow}>
           <div className={styles.metaBadge}>
-            <span className={styles.metaDot} />자동 분석 완료
+            <span className={styles.metaDot} />ìë ë¶ì ìë£
           </div>
           <div className={styles.metaBadge}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
               <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z" stroke="#8b949e" strokeWidth="2"/>
             </svg>
-            파일 {project?.file_count}개
+            íì¼ {project?.file_count}ê°
           </div>
         </div>
       </div>
 
       <AnalysisCard
-        emoji="🏗️" title="Architecture"
+        emoji="ðï¸" title="Architecture"
         content={analysis.structure}
         color="blue"
       />
       <AnalysisCard
-        emoji="⚡" title="Key Features"
+        emoji="â¡" title="Key Features"
         content={analysis.features}
         color="purple"
       />
       <AnalysisCard
-        emoji="🔧" title="Improvements"
+        emoji="ð§" title="Improvements"
         content={analysis.improvements}
         color="orange"
       />
@@ -220,7 +220,7 @@ function ReportContent({ content }) {
     <div>
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>Full Report</h1>
-        <p className={styles.pageDesc}>전체 분석 결과를 담은 종합 보고서예요.</p>
+        <p className={styles.pageDesc}>ì ì²´ ë¶ì ê²°ê³¼ë¥¼ ë´ì ì¢í© ë³´ê³ ììì.</p>
       </div>
       <div className={styles.reportBox}>
         {(content || '').split('\n').map((line, i) => {
@@ -234,9 +234,9 @@ function ReportContent({ content }) {
   )
 }
 
-/* 분석 카드 */
+/* ë¶ì ì¹´ë */
 function AnalysisCard({ emoji, title, content, color }) {
-  const paragraphs = (content || '분석 중...').split('\n').filter(l => l.trim())
+  const paragraphs = (content || 'ë¶ì ì¤...').split('\n').filter(l => l.trim())
 
   return (
     <div className={`${styles.card} ${styles['card_' + color]}`}>
